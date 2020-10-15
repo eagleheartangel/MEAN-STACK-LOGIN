@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public status: string;
 
   constructor(private _userService: UserService) {
-    this.page_title = 'Registrate'; //pasarle cada objeto a como se rellene en el formulario
+    this.page_title = 'Registrarse'; //pasarle cada objeto a como se rellene en el formulario
     this.user = new User('', '', '', '', '', '', 'ROLE_USER');
   }
 
@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
       (response) => {
         if (response.user && response.user._id) {
           this.status = 'success';
+          form.reset();
         } else {
           this.status = 'error';
         }

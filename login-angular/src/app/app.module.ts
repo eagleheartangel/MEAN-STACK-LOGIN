@@ -13,6 +13,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { GaleriaComponent } from './components/galeria/galeria.component';
 import { MusicaComponent } from './components/musica/musica.component';
+import { ContratarComponent } from './components/contratar/contratar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MusicaComponent } from './components/musica/musica.component';
     ContactoComponent,
     GaleriaComponent,
     MusicaComponent,
+    ContratarComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing],
   providers: [appRoutingProviders],
