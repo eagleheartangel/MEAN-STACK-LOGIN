@@ -2,8 +2,12 @@
 // Requires
 const express = require('express');
 const bodyParser = require('body-parser'); // datos a string
+const cors = require('cors');
 // Ejecutar express
 const app = express();
+
+// Cors
+app.use(cors());
 
 // Cargar archivos de rutas
 const user_routes = require('./routes/user');
