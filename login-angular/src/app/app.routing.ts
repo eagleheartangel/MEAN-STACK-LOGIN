@@ -9,6 +9,7 @@ import { GaleriaComponent } from './components/galeria/galeria.component';
 import { MusicaComponent } from './components/musica/musica.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ContratarComponent } from './components/contratar/contratar.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { LoginComponent } from './components/login/login.component'; //ruta del login component
 import { RegisterComponent } from './components/register/register.component';
 
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'musica', component: MusicaComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'contratar', component: ContratarComponent },
+  { path: 'ajustes', component: UserEditComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: '**', component: LoginComponent },

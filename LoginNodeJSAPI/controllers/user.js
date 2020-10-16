@@ -249,7 +249,6 @@ const controller = {
   },
   uploadAvatar: function (peticion, respuesta) {
     // Configurar el modulo multiparty (md) para habilitar subida de imagenes routes/users.js
-
     // Recoger el fichero de la peticion
     var file_name = 'Avatar no subido...';
 
@@ -260,13 +259,14 @@ const controller = {
       });
     }
     // Conseguir el nombre y la extension del archivo subido
-    const file_path = peticion.files.file0.path;
-    const file_split = file_path.split('/');
+    var file_path = peticion.files.file0.path;
+    var file_split = file_path.split('\\');
     // Advertencia ** en Windows seria file_path.split('\\');
+    // Advertencia ** en linux seria file_path.split('/');
     // Nombre del archivo
     var file_name = file_split[2];
     // Extension del archivo
-    const ext_split = file_name.split('.');
+    const ext_split = file_name.split('\.');
     const file_ext = ext_split[1];
 
     // Comprobar extension (solo imagenes), si no es valida borrar fichero subido
@@ -280,12 +280,11 @@ const controller = {
         return respuesta.status(200).send({
           status: 'error',
           message: 'La extension del archivo no es valida',
-          file: file_ext,
         });
       });
     } else {
-      // CSacar el id de usuario identificado
-      const userId = peticion.user.sub;
+      // Sacar el id de usuario identificado
+      var userId = peticion.user.sub;
 
       // Buscar y actualizar el documento de la BD
       User.findOneAndUpdate(

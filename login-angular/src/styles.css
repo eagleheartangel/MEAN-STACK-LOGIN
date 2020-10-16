@@ -2,3 +2,13 @@
 .pointer{
   cursor: pointer;
 }
+.avatar_mask{
+  width: 60px;
+  height: 60px;
+  border-radius: 900px;
+  overflow: hidden;
+
+}
+.avatar_mask img{
+  height: 60px;
+}
