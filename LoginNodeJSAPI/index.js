@@ -14,7 +14,7 @@ mongoose
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(() => {
-    console.log('Coneccion realizada');
+    console.log('Conexion realizada');
     // Servidor
     app.listen(port, () => {
       console.log('Servidor corriendo perfectamente en puerto', port);
