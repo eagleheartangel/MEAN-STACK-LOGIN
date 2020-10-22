@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { global } from '../../services/global';
+import { getJSON, parseJSON } from 'jquery';
+import { JsonpClientBackend, JsonpInterceptor } from '@angular/common/http';
 
 @Component({
   selector: 'user-edit',
@@ -58,9 +60,9 @@ export class UserEditComponent implements OnInit {
   }
 
   avatarUpload(data) {
-    let data_obj = JSON.parse(data.response);
-
-    this.user.image = data_obj.user.image;
+    // let data_obj = JSON.parse(data.response);
+    let file = data.body.user.image;
+    this.user.image = file;
     console.log(this.user);
   }
 

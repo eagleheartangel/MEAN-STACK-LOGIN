@@ -306,15 +306,25 @@ const controller = {
     const fileName = peticion.params.fileName;
     const pathFile = './uploads/users/' + fileName;
 
-    fs.exists(pathFile, (exists) => {
-      if (exists) {
-        return respuesta.sendFile(path.resolve(pathFile));
-      } else {
-        return respuesta.status(404).send({
+    fs.stat(pathFile, (err, stats) => {
+      if (err) {
+     return respuesta.status(404).send({
           message: 'La imagen no existe',
         });
+  
       }
-    });
+      return respuesta.sendFile(path.resolve(pathFile));
+    })
+
+    // fs.exists(pathFile, (exists) => {
+    //   if (exists) {
+    //     return respuesta.sendFile(path.resolve(pathFile));
+    //   } else {
+    //     return respuesta.status(404).send({
+    //       message: 'La imagen no existe',
+    //     });
+    //   }
+    // });
   },
 
   // Sacar usuarios de la base de datos o uno en concreto (por si usamos en el frontend)
