@@ -20,4 +20,4 @@ mongoose
       console.log('Servidor corriendo perfectamente en puerto', port);
     });
   })
-  .catch((error) => console.log('error'));
+  .catch((error) => console.log(error));

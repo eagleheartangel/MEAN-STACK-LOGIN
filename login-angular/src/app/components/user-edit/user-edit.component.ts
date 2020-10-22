@@ -33,11 +33,11 @@ export class UserEditComponent implements OnInit {
     this.afuConfig = {
       multiple: false,
       formatsAllowed: '.jpg, .jpeg, .png, .gif',
-      maxSize: '20',
+      maxSize: '50',
       uploadAPI: {
         url: this.url + 'upload-avatar',
         headers: {
-          Authorization: this.token,
+          "Authorization": this.token,
         },
       },
       theme: 'attachPin',

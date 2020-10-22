@@ -2,7 +2,7 @@
 const validator = require('validator');
 const bcrypt = require('bcrypt-nodejs');
 const fs = require('fs');
-const path = require('path');
+var path = require('path');
 const User = require('../models/user');
 const jwt = require('../services/jwt');
 const controller = {
@@ -251,25 +251,20 @@ const controller = {
     // Configurar el modulo multiparty (md) para habilitar subida de imagenes routes/users.js
     // Recoger el fichero de la peticion
     var file_name = 'Avatar no subido...';
-
     if (!peticion.files) {
       return respuesta.status(404).send({
-        status: 'error',
         message: file_name,
       });
     }
-    // Conseguir el nombre y la extension del archivo subido
     var file_path = peticion.files.file0.path;
-    var file_split = file_path.split('\\');
-    // Advertencia ** en Windows seria file_path.split('\\');
-    // Advertencia ** en linux seria file_path.split('/');
+    var file_split = file_path.split('/'); //mostrar en partes en array
+    // para windows es ('\\')
     // Nombre del archivo
     var file_name = file_split[2];
     // Extension del archivo
-    const ext_split = file_name.split('\.');
-    const file_ext = ext_split[1];
-
-    // Comprobar extension (solo imagenes), si no es valida borrar fichero subido
+    var ext_split = file_name.split('.');
+    var file_ext = ext_split[1];
+    // extension
     if (
       file_ext != 'png' &&
       file_ext != 'jpg' &&
@@ -283,25 +278,24 @@ const controller = {
         });
       });
     } else {
-      // Sacar el id de usuario identificado
+      // sacar id
       var userId = peticion.user.sub;
-
-      // Buscar y actualizar el documento de la BD
+      // Buscar y actualizar en la BD
       User.findOneAndUpdate(
         { _id: userId },
         { image: file_name },
         { new: true },
         (err, userUpdated) => {
           if (err || !userUpdated) {
+            // Devolver respuesta
             return respuesta.status(500).send({
               status: 'error',
               message: 'Error al guardar el usuario',
             });
           }
-
           // Devolver respuesta
           return respuesta.status(200).send({
-            status: 'success',
+            message: 'Sirve avatar',
             user: userUpdated,
           });
         }

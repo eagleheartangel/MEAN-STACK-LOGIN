@@ -66,7 +66,7 @@ export class UserService {
       .set('Content-Type', 'application/json')
       .set('Authorization', this.getToken());
 
-    return this._http.put(this.url + '/user/update', params, {
+    return this._http.put(this.url + 'user/update', params, {
       headers: headers,
     });
   }
